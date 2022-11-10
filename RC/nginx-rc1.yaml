@@ -1,0 +1,20 @@
+# nginx-rc.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ngnix-rc
+spec:
+  replicas: 3
+  selector:
+    app: nginx-anish
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx-anish
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80

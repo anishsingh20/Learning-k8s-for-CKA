@@ -1,0 +1,12 @@
+# nginx-pod.yaml
+apiVersion: v1
+kind: Pod # kind of object we are creating
+metadata: 
+  name: nginx-pod
+  labels:
+    app: nginx
+    tier: dev
+spec: # is a dictionary
+  containers: # is a list
+  - name: nginx-container # first item in the list  
+    image: nginx

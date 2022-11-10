@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod1
+  labels: 
+    app: test-pod
+    tier: testing
+
+spec:
+  containers:
+  - name: nginx-container # container 1
+    image: nginx # docker hub image name of the container
