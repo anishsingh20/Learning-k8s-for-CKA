@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pod1
+  name: nginx-pod
   labels: 
     app: test-pod
     tier: testing
