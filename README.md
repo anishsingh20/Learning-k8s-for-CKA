@@ -25,13 +25,13 @@ Reference (Bookmark this page for exam. It will be very handy):
 
 ```kubectl run nginx --image=nginx```
 
+```kubectl run --image=nginx custom-nginx --port=8080```  
+
+The above command creates a new pod called ```custom-nginx``` using the nginx image and exposes it on container port ```8080```.
+
 ### Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
 
 ```kubectl run nginx --image=nginx --dry-run=client -o yaml```
-
-```kubectl run --image=nginx custom-nginx --port=8080```  
-
-The above command creates a new pod called custom-nginx using the nginx image and expose it on container port 8080.
 
 
 
