@@ -14,6 +14,6 @@ spec:
       nodePort: 30001 # port to be used on the Node
     
 
-  selector:
+  selector: # # POD labels go here. This is how we link the Pods to the services. 
     app: nginx
     tier: dev

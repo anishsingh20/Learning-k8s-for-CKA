@@ -1,0 +1,16 @@
+# Cluster IP service : Used for internal comms within the different PODS in a k8s cluster
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-ip-svc
+
+spec:
+  type: ClusterIP 
+  ports:
+    - targetPort: 80
+      port: 80
+ 
+  selector: # POD labels go here. This is how we link the Pods to the services. 
+    app: nginx
+    tier: dev
