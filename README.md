@@ -58,5 +58,24 @@ In k8s version 1.19+, we can specify the --replicas option to create a deploymen
 ```kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml```
 
 
+### Creating a Service and exposing a pod
 
 
+#### Simple method
+
+```kubectl create service nodeport <myservicename> ```
+
+
+#### Using ```kubectl expose```
+
+```kubectl expose pod nginx  --port=80 --target-port=8000 --dry-run=client -o yaml ```
+
+OR
+
+```kubectl expose pod httpd --target-port=80 --port=80 -o yaml > service1.yaml```
+
+then 
+
+```kubectl create -f service1.yaml```
+
+https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-command/
