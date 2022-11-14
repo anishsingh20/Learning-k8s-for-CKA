@@ -109,14 +109,20 @@ kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o y
 ### Creating a Service and exposing a pod
 
 
-#### 1) Simple method
+#### 1) Using ```kubectl create```
+
 
 ```yaml
 kubectl create service nodeport <myservicename> 
 ```
 
+<b>This will not use the pods labels as selectors, instead it will assume selectors as ```app=redis```. You cannot pass in selectors as an option. So it does not work very well if your pod has a different label set. So generate the file and modify the selectors before creating the service </b>
+
+
 
 #### 2) Using ```kubectl expose```
+
+<b>This will automatically use the pod's labels as selectors</b>
 
 ```yaml
 kubectl expose pod nginx  --port=80 --target-port=8000 --dry-run=client -o yaml 
@@ -147,7 +153,6 @@ kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o ya
 
 ```
 
-(This will automatically use the pod's labels as selectors)
 
 Or
 
@@ -155,10 +160,6 @@ Or
 kubectl create service clusterip redis --tcp=6379:6379 --dry-run=client -o yaml 
 
 ```
-
-(This will not use the pods labels as selectors, instead it will assume selectors as app=redis. You cannot pass in selectors as an option. So it does not work very well if your pod has a different label set. So generate the file and modify the selectors before creating the service)
-
-
 
 Create a Service named nginx of type NodePort to expose pod nginx's port 80 on port 30080 on the nodes:
 
@@ -178,7 +179,6 @@ kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=cl
 Both the above commands have their own challenges. While one of it cannot accept a selector the other cannot accept a node port. I would recommend going with the ```kubectl expose``` command. If you need to specify a node port, generate a definition file using the same command and manually input the nodeport before creating the service.
 
 
-```
 
 
 
