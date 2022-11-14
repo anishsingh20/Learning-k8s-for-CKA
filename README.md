@@ -33,6 +33,15 @@ Using the ``` kubectl run``` and ``` kubectl create <object>``` command can help
 
 Use the below set of commands and try the previous practice tests again, but this time try to use the below commands instead of YAML files. Try to use these as much as you can going forward in all exercises
 
+
+```--dry-run```: By default as soon as the command is run, the resource will be created. If you simply want to test your command , use the ```--dry-run=client``` option. This will not create the resource, instead, tell you whether the resource can be created and if your command is right.
+
+```-o yaml```: This will output the resource definition in YAML format on screen.
+
+
+
+Use the above two in combination to generate a resource definition file quickly, that you can then modify and create resources as required, instead of creating the files from scratch.
+
 Reference (Bookmark this page for exam. It will be very handy):
 
 ```yaml
