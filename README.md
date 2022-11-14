@@ -1,12 +1,24 @@
-# Kubernetes-Basics
-This contains simple K8s resources manifest files like pods, deployment, replicaSet and replication controller manifest in YAML.
+# UNDERSTANDING KUBERNETES
+
+This repo is for anyone who wants to appear for CKA(https://www.cncf.io/certification/cka/) exam and wants to know the basics and practice. I have created this repo while I am preparing for the exam to help other fellow engineers like me.
+
+The folders in the repository contain the YAML files which contain the definition of most of the k8s objects like <i>Pods, services, replication controller etc</i>.
+
+<b>Best course out there to practice and learn k8s fundamentals and prepare for the exam: https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/learn </b>
 
 
-### Practice tests
+### IMPORTANT EXAM RESOURCES
+<b>
+  
+ 1) K8s command Cheatsheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+  
+2) Free Online k8s playground: https://www.katacoda.com/courses/kubernetes/playground
+  
+3) Practice tests : https://kodekloud.com/topic/practice-tests-deployments-2/
+  
+4) Using k8s Imperative commands to create Objects: https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-command/ 
 
-
-https://kodekloud.com/topic/practice-tests-deployments-2/
-
+</b>
 
 
 
@@ -26,6 +38,11 @@ Reference (Bookmark this page for exam. It will be very handy):
 ```yaml
 https://kubernetes.io/docs/reference/kubectl/conventions/
 ```
+
+
+## IMPORTANT ```kubectl``` COMMANDS
+
+
 
 ### Create an NGINX Pod
 
@@ -90,9 +107,7 @@ kubectl create service nodeport <myservicename>
 ```
 
 
-#### 2) Using ```yaml 
-kubectl expose
-```
+#### 2) Using ```kubectl expose```
 
 ```yaml
 kubectl expose pod nginx  --port=80 --target-port=8000 --dry-run=client -o yaml 
@@ -100,20 +115,20 @@ kubectl expose pod nginx  --port=80 --target-port=8000 --dry-run=client -o yaml
 
 OR
 
-```yaml
-kubectl expose pod httpd --target-port=80 --port=80 -o yaml > service1.yaml
+  ```yaml
+  kubectl expose pod httpd --target-port=80 --port=80 -o yaml > service1.yaml
+  ```
+
+  then 
+
+  ```yaml
+  kubectl create -f service1.yaml
 ```
 
-then 
-
-```yaml
-kubectl create -f service1.yaml
-```
-
-https://kubernetes.io/docs/tasks/manage-kubernetes-objects/imperative-command/
 
 
 
 
-## Kubectl CheatSheet
+
+
 
