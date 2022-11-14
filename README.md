@@ -1,4 +1,4 @@
-# UNDERSTANDING KUBERNETES
+## UNDERSTANDING KUBERNETES
 
 This repo is for anyone who wants to appear for CKA(https://www.cncf.io/certification/cka/) exam and wants to know the basics and practice. I have created this repo while I am preparing for the exam to help other fellow engineers like me.
 
