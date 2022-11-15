@@ -1,0 +1,11 @@
+# Creating a pod Binding to schedule a running Pod to another Node by mimicking what a scheduler does
+
+apiVersion: v1
+kind: Binding
+metadata:
+  name: nginx # name of the pod
+
+target:
+  apiVersion: v1
+  kind: Node
+  name: minikube
