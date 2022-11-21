@@ -205,6 +205,42 @@ spec: # is a dictionary
     
 ```
 
+Selectors
+
+```yaml
+
+# ngnix-rs replicaSet
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:    # selector goes here
+    matchLabels:
+      app: nginx-app
+
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx-app
+        tier: frontend
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+            
+
+```
+
+
+#### Useful commands
+
+
 
 
 
