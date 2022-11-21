@@ -209,30 +209,23 @@ Selectors
 
 ```yaml
 
-# ngnix-rs replicaSet
-
 apiVersion: apps/v1
 kind: ReplicaSet
-metadata: 
-  name: nginx-rs
+metadata:
+   name: replicaset-1
 spec:
-  replicas: 3
-  selector:    # selector goes here
-    matchLabels:
-      app: nginx-app
-
-  template:
-    metadata:
-      name: nginx-pod
-      labels:
-        app: nginx-app
-        tier: frontend
-    spec:
-      containers:
-        - name: nginx-container
-          image: nginx
-          ports:
-            - containerPort: 80
+   replicas: 2
+   selector:
+      matchLabels:
+        tier: nginx # should match the pod label
+   template: # pod definition goes here
+     metadata:
+       labels:
+        tier: nginx
+     spec:
+       containers:
+       - name: nginx
+         image: nginx
             
 
 ```
