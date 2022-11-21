@@ -186,7 +186,24 @@ Lables are properties assigned to each item.  Selectors helps us filter these it
 
 Labels are added under the ```metadata``` section of the resource definition file, where as selectors are added under the ```spec``` section.
 
+Example:
 
+```yaml
+
+# nginx-pod.yaml
+apiVersion: v1
+kind: Pod # kind of object we are creating
+metadata: 
+  name: nginx-pod
+  labels:
+    app: nginx
+    tier: dev
+spec: # is a dictionary
+  containers: # is a list
+  - name: nginx-container # first item in the list  
+    image: nginx
+    
+```
 
 
 
