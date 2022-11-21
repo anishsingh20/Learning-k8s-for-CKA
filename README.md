@@ -240,7 +240,17 @@ spec:
 
 #### Useful commands
 
+```yaml
 
+kubectl get pod --show-labels
+
+kubectl get pod --selector add=dev # or kubectl get pod -l add=dev
+
+kubectl get pod -l env=prod,bu=finance,tier=frontend  # equality based selectors
+
+kubectl get pod -l 'env in (prod) ,bu in (finance), tier in (frontend)' # set based selectors
+
+```
 
 
 
