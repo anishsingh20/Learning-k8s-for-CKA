@@ -180,6 +180,10 @@ Both the above commands have their own challenges. While one of it cannot accept
 
 
 
+### Selectors and Labels
+
+Lables are properties assigned to each item.  Selectors helps us filter these items.
+
 
 
 
