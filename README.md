@@ -184,7 +184,7 @@ Both the above commands have their own challenges. While one of it cannot accept
 
 Lables are properties assigned to each item.  Selectors helps us filter these items.
 
-
+Labels are added under the ```metadata``` section of the resource definition file, where as selectors are added under the ```spec``` section.
 
 
 
