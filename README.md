@@ -270,7 +270,14 @@ Command to taint a Node:
 kubectl taint node node01 spray=mortein:NoSchedule
 
 ```
+Command to remove the taint from the Node. Append a '-' to the end of the ```taint``` command.
 
+```yaml
+
+kubectl taint node node01 spray=mortein:NoSchedule-
+
+
+```
 
 Adding toleration inside the Pod definition, so that the node can run that Pod:
 
