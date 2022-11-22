@@ -247,6 +247,15 @@ kubectl get pod -l 'env in (prod) ,bu in (finance), tier in (frontend)' # set ba
 
 ### Taints and Tolerations
 
+They are used to set restrictions on what pods can be scheduled on a Node. It does not tell a pod to go to a particulr Node, instead it tells the Node to only accept Pods with certain Tolerations to taints. 
+
+The Master node has a taint set to it. To check the taint we can use the command:
+
+```yaml
+
+kubectl describe node kubemaster | grep Taint
+
+```
 
 Command to taint a Node:
 
