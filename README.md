@@ -249,6 +249,12 @@ kubectl get pod -l 'env in (prod) ,bu in (finance), tier in (frontend)' # set ba
 
 They are used to set restrictions on what pods can be scheduled on a Node. It does not tell a pod to go to a particulr Node, instead it tells the Node to only accept Pods with certain Tolerations to taints. 
 
+Different kinds of Taint effects:
+
+1) NoSchedule - The pod won't be scheduled on this Node.
+2) PreferNoSchedule - Try to avoid placing a pod on this node, but it's not guranteed.
+3) NoExecute - Schedule no nodes and evict any nodes if any running on the Node.
+
 The Master node has a taint set to it. To check the taint we can use the command:
 
 ```yaml
