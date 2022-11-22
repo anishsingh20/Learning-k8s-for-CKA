@@ -245,5 +245,14 @@ kubectl get pod -l 'env in (prod) ,bu in (finance), tier in (frontend)' # set ba
 
 ```
 
+### Taints and Tolerations
 
+
+Command to taint a Node:
+
+```yaml
+
+kubectl taint node node01 spray=mortein:NoSchedule
+
+```
 
