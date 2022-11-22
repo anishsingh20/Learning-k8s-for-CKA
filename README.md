@@ -351,3 +351,38 @@ spec:
                   values:
                   - blue
 ```
+
+Another example of setting Node affinity for a pod using ```Exists``` operator:
+
+```yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: red
+  name: red
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: red
+  template:
+    metadata:
+      labels:
+        app: red
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: node-role.kubernetes.io/control-plane
+                  operator: Exists
+                  
+         
+```
