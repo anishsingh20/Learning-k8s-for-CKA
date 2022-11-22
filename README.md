@@ -256,3 +256,28 @@ kubectl taint node node01 spray=mortein:NoSchedule
 
 ```
 
+
+Adding toleration inside the Pod definition, so that the node can run that Pod:
+
+```yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod
+  name: bee
+spec:
+  containers:
+   - image: nginx
+     name: bee-container
+
+  tolerations:
+   - key: "spray"
+     value: "mortein"
+     operator: "Equal"
+     effect: "NoSchedule"
+
+```
+
