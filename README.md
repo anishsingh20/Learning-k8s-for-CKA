@@ -90,13 +90,20 @@ For example you cannot edit the environment variables, service accounts, resourc
 
 A copy of the file with your changes is saved in a temporary location.
 
-You can then delete the existing pod by running the command:
+You can then delete the existing pod by running the command or use ```kubectl replace --force``` command as well instead of creating a new pod:
 
 ```yaml 
 kubectl delete pod webapp
 ```
 
+Then, create or replace the existing pod with new changes:
 
+```yaml
+
+kubectl replace --force -f /tmp/kubectl-edit-ccvrq.yaml
+
+```
+OR
 
 Then create a new pod with your changes using the temporary file
 
