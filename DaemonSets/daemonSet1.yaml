@@ -1,0 +1,21 @@
+# Daemon Sets - Makes sure that a copy of pod runs on each node across the k8s cluster
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: logging-daemon
+
+spec:
+  selector:
+    matchLabels:  # the selector labels should match the labels in the pod template
+      app: logging-agent
+
+  template:       # pod template
+    metadata:
+      labels:
+        app: logging-agent
+
+    spec:
+      containers:
+        - name: logging-agent
+          image: logging-agent
