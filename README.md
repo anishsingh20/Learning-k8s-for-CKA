@@ -497,7 +497,7 @@ spec:
 
 2) <b>Static Pods</b>: These are pods which are created by ```kubelet``` independently without the intervention of k8s control plane components like scheduler and API server. This happens by placing the pod's manifest inside a directory on a host machine and then adding that configuration/location inside the kubelet service configuration. The kubelet manages these pods, whereas the k8s control plane k8s controller has a read-only access to these pods.
 
-Use Case of Static Pods:  Clusters depoyed using ```kubeadm``` use this approach to deploy control plane components. Static pods are mainly used to deploy k8s control plane components like ```kube-api-server``` , ```controller-manager```, ```scheduler``` etc. We can simply install ```kubelet``` on the master Node and then place the Pod menifests inside a directory and then add the location to those manifests inside the ```kubelet``` configuration file.
+Use Case of Static Pods:  Clusters depoyed using ```kubeadm``` & ```minikube``` use this approach to deploy control plane components. Static pods are mainly used to deploy k8s control plane components like ```kube-api-server``` , ```controller-manager```, ```scheduler``` etc. We can simply install ```kubelet``` on the master Node and then place the Pod menifests inside a directory and then add the location to those manifests inside the ```kubelet``` configuration file.
 
 In general, the kubelet configuration file is inside :
 
@@ -516,3 +516,5 @@ staticPodPath: /etc/k8s/manifests
 ```
 
 In above case we are assuming the static pod's manifests are inside ```/etc/k8s/manifests``` location on the host. 
+
+<b>NOTE : One way to identify a Static Pod is that, the name of the static pod ends with the name of the Node on which they are running. </b>
