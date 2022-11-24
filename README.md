@@ -567,4 +567,14 @@ sudo cat /var/lib/kubelet/config.yaml | grep -i static
 staticPodPath: /etc/kubernetes/manifests
 
 ```
+Now by navigating to that specific directory we can locate the Static pod's manifests:
 
+```bash
+
+docker@minikube:/var/lib$ cd /etc/kubernetes/manifests
+docker@minikube:/etc/kubernetes/manifests$ ls
+etcd.yaml            kube-controller-manager.yaml
+kube-apiserver.yaml  kube-scheduler.yaml
+docker@minikube:/etc/kubernetes/manifests$
+
+```
