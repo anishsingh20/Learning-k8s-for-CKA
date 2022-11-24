@@ -547,3 +547,24 @@ tiller-deploy-c7d76457b-bztz7      1/1     Running   164 (9m48s ago)   137d
 
 ```
 Now in the above example, a simple way to identiy Static pods is by looking at their names - In the above pods whose names end with minikube are static pods and they are control plane components as well- ```kube-apiserver-minikube ```, ```kube-controller-manager-minikube```, ```kube-scheduler-minikube   ```, ```etcd-minikube```.
+
+
+2) Then login to the Node and check the configuration file of the ```kubelet``` process:
+
+```bash
+
+ps -ef | grep kubelet
+root        1297       1  6 08:47 ?        00:09:24 /var/lib/minikube/binaries/v1.24.1/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --config=/var/lib/kubelet/config.yaml --container-runtime=remote --container-runtime-endpoint=/var/run/cri-dockerd.sock --hostname-override=minikube --image-service-endpoint=/var/run/cri-dockerd.sock --kubeconfig=/etc/kubernetes/kubelet.conf --node-ip=192.168.49.2 --runtime-request-timeout=15m
+
+```
+From the above we can notice the configuration of kubelet process ```--config=/var/lib/kubelet/config.yaml```
+
+Now, we just need to check for ```staticPodPath``` inside the above file and that will give us the path to the Static pod's manifests:
+
+```bash
+
+sudo cat /var/lib/kubelet/config.yaml | grep -i static
+staticPodPath: /etc/kubernetes/manifests
+
+```
+
