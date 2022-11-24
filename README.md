@@ -490,14 +490,16 @@ spec:
 
 
 
-### Daemon Sets and Static Pods
+## Daemon Sets and Static Pods
 
 1) <b>Daemon Sets</b>:  ensure that all the nodes across the cluster are running a copy of a Pod. Use cases include deploying a monitoring agent, logging agent, kube-proxy agent as this is require to be run on all Nodes in a k8s cluster.
 
 
 2) <b>Static Pods</b>: These are pods which are created by ```kubelet``` independently without the intervention of k8s control plane components like scheduler and API server. This happens by placing the pod's manifest inside a directory on a host machine and then adding that configuration/location inside the kubelet service configuration. The kubelet manages these pods, whereas the k8s control plane k8s controller has a read-only access to these pods.
 
-Use Case of Static Pods:  Clusters depoyed using ```kubeadm``` & ```minikube``` use this approach to deploy control plane components. Static pods are mainly used to deploy k8s control plane components like ```kube-api-server``` , ```controller-manager```, ```scheduler``` etc. We can simply install ```kubelet``` on the master Node and then place the Pod menifests inside a directory and then add the location to those manifests inside the ```kubelet``` configuration file.
+### Use Case of Static Pods:  
+
+Clusters depoyed using ```kubeadm``` & ```minikube``` use this approach to deploy control plane components. Static pods are mainly used to deploy k8s control plane components like ```kube-api-server``` , ```controller-manager```, ```scheduler``` etc. We can simply install ```kubelet``` on the master Node and then place the Pod menifests inside a directory and then add the location to those manifests inside the ```kubelet``` configuration file.
 
 In general, the kubelet configuration file is inside :
 
