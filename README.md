@@ -505,7 +505,7 @@ In general, the kubelet configuration file is inside :
 
 ```yaml
 
-/var/lib/kubelet.conf
+/var/lib/kubelet/config.yaml
 
 ```
 
