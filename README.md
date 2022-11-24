@@ -499,7 +499,7 @@ spec:
 
 ### Use Case of Static Pods:  
 
-Clusters depoyed using ```kubeadm``` & ```minikube``` use this approach to deploy control plane components. Static pods are mainly used to deploy k8s control plane components like ```kube-api-server``` , ```controller-manager```, ```scheduler``` etc. We can simply install ```kubelet``` on the master Node and then place the Pod menifests inside a directory and then add the location to those manifests inside the ```kubelet``` configuration file.
+Clusters depoyed using ```kubeadm``` & ```minikube``` use this approach to deploy control plane components. Static pods are mainly used to deploy k8s control plane components like ```kube-api-server``` , ```controller-manager```, ```scheduler``` &  ```etcd``` server etc. We can simply install ```kubelet``` on the master Node and then place the Pod menifests inside a directory and then add the location to those manifests inside the ```kubelet``` configuration file.
 
 In general, the kubelet configuration file is inside :
 
@@ -520,3 +520,30 @@ staticPodPath: /etc/k8s/manifests
 In above case we are assuming the static pod's manifests are inside ```/etc/k8s/manifests``` location on the host. 
 
 <b>NOTE : One way to identify a Static Pod is that, the name of the static pod ends with the name of the Node on which they are running. </b>
+
+### How to identify a Static pod:
+
+1) List the pods and check which all are Static Pods. Generally, control plane components are deployed as Static Pods under ```kube-system``` namespace. In this example we have deployed a ```minikube``` k8s cluster.
+
+```yaml
+
+> kubectl get nodes -o wide 
+NAME       STATUS   ROLES           AGE    VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+minikube   Ready    control-plane   137d   v1.24.1   192.168.49.2   <none>        Ubuntu 20.04.4 LTS   5.10.47-linuxkit   docker://20.10.17
+
+> kubectl get pod -n kube-system
+ 
+NAME                               READY   STATUS    RESTARTS          AGE
+coredns-6d4b75cb6d-g6fk8           1/1     Running   8 (9m48s ago)     137d
+etcd-minikube                      1/1     Running   8 (9m48s ago)     137d
+kube-apiserver-minikube            1/1     Running   8 (9m48s ago)     137d
+kube-controller-manager-minikube   1/1     Running   8 (9m48s ago)     137d
+kube-proxy-5pmx4                   1/1     Running   8 (9m48s ago)     137d
+kube-scheduler-minikube            1/1     Running   8 (9m48s ago)     137d
+metrics-server-8595bd7d4c-lk6mh    1/1     Running   237 (9m48s ago)   137d
+storage-provisioner                1/1     Running   164 (8m46s ago)   137d
+tiller-deploy-c7d76457b-bztz7      1/1     Running   164 (9m48s ago)   137d
+
+
+```
+Now in the above example, a simple way to identiy Static pods is by looking at their names - In the above pods whose names end with minikube are static pods and they are control plane components as well- ```kube-apiserver-minikube ```, ```kube-controller-manager-minikube```, ```kube-scheduler-minikube   ```, ```etcd-minikube```.
