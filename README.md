@@ -590,4 +590,6 @@ Revisions/Rollouts helps us keep track of the changes made to a deployment/appli
 
 #### Deployment Strategies
 
+a) <b>RollingUpgrade</b> - : This is the default deployemnt strategy of a k8s deployment. In this, once we upgrade the deployment, the pods associated with a deployement's current replicaSet are deleted one by one and at the same time a new replicaSet is created and new pods are scaled/created. This ensures that the application is UP and running and there is no Downtime as not all Pods are deleted after an update like in ```Recreate``` upgrade strategy. 
 
+b) <b>Recreate</b> - : In this upgrade strategy the pods within the current running ReplicaSet are deleted at once, and then a new replicaSet is created and new pods are brought up. But the drawback is during the time the older ReplicaSet/pods are deleted, the appplication will be <b>DOWN</b>.
