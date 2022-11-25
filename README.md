@@ -578,3 +578,16 @@ kube-apiserver.yaml  kube-scheduler.yaml
 docker@minikube:/etc/kubernetes/manifests$
 
 ```
+
+
+## APPLICATION LIFECYCLE MANAGEMENT 
+
+
+### ROLLING UPGRADES AND ROLLBACKS
+
+Revisions/Rollouts helps us keep track of the changes made to a deployment/application during it's lifecycle.  When we create a deployment it triggers a rollout. When we update a deployment it is revised and k8s can help us keep a track of all the revisions.
+
+
+#### Deployment Strategies
+
+
