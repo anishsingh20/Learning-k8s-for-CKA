@@ -605,3 +605,24 @@ b) <b>Recreate</b> - : In this upgrade strategy the pods within the current runn
 | Update | ```kubectl apply -f deployment1.yaml``` or ```kubectl set image deploy my-app <container_name>=<new_image>``` |
 | Status | ```kubectl rollout status deploy my_app``` and  ```kubectl rollout history deploy my_app``` |
 | Rollback to previous revision | ```kubectl rollout undo deploy my_app``` |
+
+
+
+### Commands and arguments 
+
+This is how we add a command to a pod definition:
+
+```yaml
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: ubuntu-sleeper-3
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command:
+      - "sleep"
+      - "1200"
+      
+```
