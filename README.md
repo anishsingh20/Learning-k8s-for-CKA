@@ -669,3 +669,8 @@ metadata:
   APP_COLOR: darkblue
 
 ```
+
+
+Now, once we have the config maps created with the required data, we need to inject them to the Pod.
+
+
