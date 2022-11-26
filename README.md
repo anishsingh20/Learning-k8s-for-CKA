@@ -622,7 +622,15 @@ spec:
   - name: ubuntu
     image: ubuntu
     command:
-      - "sleep"
-      - "1200"
+     - "sleep"
+     - "1200"
+     
+     #another ways to add commands
+    #command: ["sleep"]
+    #args: ["5000"]
+    
+    #or
+    
+    #command: ["sleep", "5000"]
       
 ```
