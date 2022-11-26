@@ -634,3 +634,11 @@ spec:
     #command: ["sleep", "5000"]
       
 ```
+
+
+
+## CONFIGMAPS, SECRETS AND ENVIRONMENT VARIABLES
+
+```ConfigMaps``` aare used to store non-confidential data in ```<key:value>``` pairs. Pods can consume ```ConfigMaps``` as Environment variables, command line arguments, or as configuration files.
+
+
