@@ -663,7 +663,7 @@ Example:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: webapp-color-ma
+  name: webapp-config-map
  
  data: #<key:value> pairs go here, cmdline args etc
   APP_COLOR: darkblue
@@ -673,4 +673,38 @@ metadata:
 
 Now, once we have the config maps created with the required data, we need to inject them to the Pod.
 
+```yaml
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+  
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: webapp-config-map
+
+    image: nginx
+    
+
+```
+Or we can add single eng variables separately from the ConfigMap
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+  
+spec:
+  containers:
+  - env:
+    - name: APP_COLOR # Define the environment variable
+      valueFrom:
+        configMapKeyRef:
+          name: webapp-config-map. # The ConfigMap this value comes from.
+          key: APP_COLOR # The key to fetch.
+    
+
+    image: nginx
