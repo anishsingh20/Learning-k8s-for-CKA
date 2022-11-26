@@ -647,5 +647,25 @@ https://kubernetes.io/docs/concepts/configuration/configmap/
 
 1) Imperative Command- Using ```kubectl create configmap <name> --from-literal=<key>=<value>``` or ```kubectl create configmap <name> --from-file=<path_to_config_map_file> ```
 
+Example:
+
+```yaml
+
+kubectl create configmap webapp-color-map --from-literal=APP_COLOR=darkblue
+
+```
+
 2) Declarative way - By creating a configMap definiton file and using ```kubectl create -f``` or ```kubectl apply -f```
 
+Example:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-color-ma
+ 
+ data: #<key:value> pairs go here, cmdline args etc
+  APP_COLOR: darkblue
+
+```
