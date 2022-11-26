@@ -641,4 +641,11 @@ spec:
 
 ```ConfigMaps``` aare used to store non-confidential data in ```<key:value>``` pairs. Pods can consume ```ConfigMaps``` as Environment variables, command line arguments, or as configuration files.
 
+https://kubernetes.io/docs/concepts/configuration/configmap/
+
+### Creating a ConfigMap
+
+1) Imperative Command- Using ```kubectl create configmap <name> --from-literal=<key>=<value>``` or ```kubectl create configmap <name> --from-file=<path_to_config_map_file> ```
+
+2) Declarative way - By creating a configMap definiton file and using ```kubectl create -f``` or ```kubectl apply -f```
 
