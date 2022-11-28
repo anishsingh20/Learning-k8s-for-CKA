@@ -728,3 +728,11 @@ spec:
  ### Secrets
     
 Secrets are used to store sensitive data like passwords and keys. They are stored in an encoded formate to provide security. We first create a secret and then inject it inside the pod.
+
+Imperetive command to create a secret:
+
+```yaml
+
+kubectl create secret generic db-secret --from-literal=DB_Host=c3FsMDE= --from-literal=DB_User=root
+
+```
