@@ -690,7 +690,10 @@ spec:
     
 
 ```
-Or we can add single eng variables separately from the ConfigMap
+
+Or we can add single eng variables separately from the ConfigMap or add them from a Volume
+
+```yaml
 
 apiVersion: v1
 kind: Pod
@@ -708,3 +711,20 @@ spec:
     
 
     image: nginx
+  ```  
+  
+  
+  ```yaml
+  
+  volumes:
+  - name: app-config-volume
+    configMap:
+      name: app-config
+      
+ ```
+  
+  
+   
+ ### Secrets
+    
+    Secrets are used to store sensitive data like passwords and keys. They are stored in an encoded formate to provide security. We first create a secret and then inject it inside the pod.
