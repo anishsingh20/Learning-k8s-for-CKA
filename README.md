@@ -802,3 +802,26 @@ volumes:
     secretName: db-secret
 
 ```
+
+
+### Multi Container Pods
+
+Spec for multicontainer pods:
+
+```yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: yellow
+  
+spec:  
+  containers:
+  - image: busybox
+    name: lemon
+    command: ["sleep","1000" ]
+
+  - image: redis
+    name: gold
+    
+```
