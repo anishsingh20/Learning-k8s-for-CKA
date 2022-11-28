@@ -711,6 +711,7 @@ spec:
     
 
     image: nginx
+    
   ```  
   
   
@@ -751,4 +752,51 @@ kind: Secret
 metadata:
   name: db-secret
   
+```
+
+
+Now, the next step is to inject the secret to the pod, that is done by adding the below :
+
+```yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+  
+spec:
+  containers:
+  - envFrom:
+    - secretRef:
+        name: db-secret
+        
+    image: nginx
+
+```
+
+OR adding a single ENV variable from the secret
+
+```yaml
+
+
+spec:
+  containers:
+  - env:
+    - name: DB_Host
+      valueFrom:
+        secretKeyRef:
+          name: db-secret
+          key: DB_host
+        
+```
+
+Or pass a secret as files in a Volume:
+
+```yaml
+
+volumes:
+ - name: db-secret-volume
+   secret:
+    secretName: db-secret
+
 ```
