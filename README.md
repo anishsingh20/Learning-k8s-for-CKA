@@ -736,3 +736,19 @@ Imperetive command to create a secret:
 kubectl create secret generic db-secret --from-literal=DB_Host=c3FsMDE= --from-literal=DB_User=root
 
 ```
+
+Declarative way of creating a secret:
+
+```yaml
+apiVersion: v1
+
+data:
+  DB_Host: YzNGc01ERT0=
+  DB_User: cm9vdA==
+  DB_Password: cGFzc3dvcmQxMjM=
+kind: Secret
+
+metadata:
+  name: db-secret
+  
+```
