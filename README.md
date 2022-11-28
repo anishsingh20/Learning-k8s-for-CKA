@@ -730,6 +730,8 @@ spec:
     
 Secrets are used to store sensitive data like passwords and keys. They are stored in an encoded formate to provide security. We first create a secret and then inject it inside the pod.
 
+https://kubernetes.io/docs/concepts/configuration/secret/
+
 Imperetive command to create a secret:
 
 ```yaml
