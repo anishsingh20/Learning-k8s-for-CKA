@@ -830,3 +830,40 @@ spec:
     name: gold
     
 ```
+
+### initContainers
+
+These are processes/tasks which will run only once during the startup of the pod or when the pod is in Creation state.  These are the processes which which run initially when a pod is created, it is only after they successfully run, other containers are started and run. 
+
+When a POD is first created the initContainer is run, and the process in the initContainer must run to a completion before the real container hosting the application starts. 
+
+You can configure multiple such initContainers as well, like how we did for multi-pod containers. In that case each init container is run one at a time in sequential order.
+
+InitContainers are terminated once they complete their task. 
+
+<b>NOTE : If any initContainers fail to complete, k8s restarts the pod repeatedly until the INIT container executes successfully. </b>
+
+
+```yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: busybox:1.28
+    command: ['sh', '-c', 'echo The app is running! && sleep 3600']
+  initContainers:
+  - name: init-myservice
+    image: busybox:1.28
+    command: ['sh', '-c', 'until nslookup myservice; do echo waiting for myservice; sleep 2; done;']
+  - name: init-mydb
+    image: busybox:1.28
+    command: ['sh', '-c', 'until nslookup mydb; do echo waiting for mydb; sleep 2; done;']
+
+
+```
