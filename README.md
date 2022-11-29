@@ -806,6 +806,11 @@ volumes:
 
 ### Multi Container Pods
 
+Multi container pods share the same lifecycle i.e they are created together and destroyed together. They share the same network space(Connect with each other over localhost) and access the same storage volumes. 
+
+We can make those containers communicate with each other using a Shared Volume(https://kubernetes.io/docs/tasks/access-application-cluster/communicate-containers-same-pod-shared-volume/)
+
+
 Spec for multicontainer pods:
 
 ```yaml
