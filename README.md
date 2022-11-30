@@ -874,7 +874,7 @@ spec:
 ## Cluster Maintenance
 
 
-### Backup and Restore K8s cluster
+### Working with ```etcdctl```
 
 
 Backing up ```etcd``` cluster
@@ -948,4 +948,7 @@ Since our ETCD database is TLS-Enabled, the following options are mandatory:
 etcdctl snapshot restore -h
 ```
 
+Example, in ```kubeadm``` deployment, ```etcd``` server is deployed as a Static pod on the Master Node.
+
+### 
 
