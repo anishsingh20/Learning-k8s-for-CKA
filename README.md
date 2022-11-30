@@ -952,7 +952,7 @@ Example, in ```kubeadm``` deployment, ```etcd``` server is deployed as a Static 
 
 ### Taking a snapshot of the ```etcd``` cluster using ```etcdctl``` :
 
-1) Get the details of the ```etcd``` pod and make a not of the above mentioned parameters, because we need them to run the ```etcdctl``` command:
+1) Get the details of the ```etcd``` pod and make a note of the above mentioned parameters, because we need them to run the ```etcdctl``` command:
 
 ```shell
 
@@ -1071,3 +1071,23 @@ Get the status of the snapshot by using the command:
 1f793c66, 2392, 828, 2.0 MB
 
 ```
+
+
+### Restoring ```etcd``` cluster
+
+1) Stop ```kube-apiserver``` service on the master node:
+
+2) Restore the snapshot and add a new data directory location to store the new k8s cluster state:
+
+```shell
+etcdctl snapshot restore /opt/snapshot-pre-boot.db --data-dir=/var/lib/etcd-from-backup /
+--cacert=/etc/kubernetes/pki/etcd/ca.crt /
+--endpoints=https://127.0.0.1:2379 /
+--cert=/etc/kubernetes/pki/etcd/server.crt /
+--key=/etc/kubernetes/pki/etcd/server.key 
+
+2022-11-30 20:13:34.201609 I | mvcc: restore compact to 1939
+2022-11-30 20:13:34.210061 I | etcdserver/membership: added member 8e9e05c52164694d [http://localhost:2380] to cluster cdf818194e3a8c32
+
+```
+
