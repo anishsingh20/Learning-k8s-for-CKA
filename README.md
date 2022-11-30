@@ -1050,14 +1050,17 @@ In the above output we need to make a note of the following -
 
 We will pass the above while running the ```etcdctl``` command  for taking a snapshot:
 
-2) Now we will take the snapshot using the below command:
+2) Now we will take the snapshot using the below command. First set the env variable to use the ```etcdctl``` cmds:
 
 ```shell
-etcdctl snapshot save /opt/snapshot-pre-boot.db \
-> --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-> --endpoints=https://127.0.0.1:2379 \
-> --cert=/etc/kubernetes/pki/etcd/server.crt \
-> --key=/etc/kubernetes/pki/etcd/server.key 
+
+> export ETCDCTL_API=3
+
+> etcdctl snapshot save /opt/snapshot-pre-boot.db \
+  > --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  > --endpoints=https://127.0.0.1:2379 \
+  > --cert=/etc/kubernetes/pki/etcd/server.crt \
+  > --key=/etc/kubernetes/pki/etcd/server.key 
 Snapshot saved at /opt/snapshot-pre-boot.db
 
 ```
