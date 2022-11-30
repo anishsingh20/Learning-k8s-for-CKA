@@ -950,5 +950,103 @@ etcdctl snapshot restore -h
 
 Example, in ```kubeadm``` deployment, ```etcd``` server is deployed as a Static pod on the Master Node.
 
-### 
+### Taking a snapshot of the ```etcd``` cluster using ```etcdctl``` :
+
+1) Get the details of the ```etcd``` pod and make a not of the above mentioned parameters, because we need them to run the ```etcdctl``` command:
+
+```shell
+
+>kubectl describe pod etcd-controlplane -n kube-system
+
+Name:                 etcd-controlplane
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Node:                 controlplane/10.64.172.9
+Start Time:           Wed, 30 Nov 2022 19:15:39 +0000
+Labels:               component=etcd
+                      tier=control-plane
+Annotations:          kubeadm.kubernetes.io/etcd.advertise-client-urls: https://10.64.172.9:2379
+                      kubernetes.io/config.hash: f558c848c699881551a31da20f182be1
+                      kubernetes.io/config.mirror: f558c848c699881551a31da20f182be1
+                      kubernetes.io/config.seen: 2022-11-30T19:15:38.717633568Z
+                      kubernetes.io/config.source: file
+                      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+Status:               Running
+IP:                   10.64.172.9
+IPs:
+  IP:           10.64.172.9
+Controlled By:  Node/controlplane
+Containers:
+  etcd:
+    Container ID:  containerd://d34944f57bfddb012d0a3b4ed0323ba6235393062e06310ab4dbe9c5532dfcdd
+    Image:         k8s.gcr.io/etcd:3.5.3-0
+    Image ID:      k8s.gcr.io/etcd@sha256:13f53ed1d91e2e11aac476ee9a0269fdda6cc4874eba903efd40daf50c55eee5
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      etcd
+      --advertise-client-urls=https://10.64.172.9:2379
+      --cert-file=/etc/kubernetes/pki/etcd/server.crt
+      --client-cert-auth=true
+      --data-dir=/var/lib/etcd
+      --experimental-initial-corrupt-check=true
+      --initial-advertise-peer-urls=https://10.64.172.9:2380
+      --initial-cluster=controlplane=https://10.64.172.9:2380
+      --key-file=/etc/kubernetes/pki/etcd/server.key
+      --listen-client-urls=https://127.0.0.1:2379,https://10.64.172.9:2379
+      --listen-metrics-urls=http://127.0.0.1:2381
+      --listen-peer-urls=https://10.64.172.9:2380
+      --name=controlplane
+      --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt
+      --peer-client-cert-auth=true
+      --peer-key-file=/etc/kubernetes/pki/etcd/peer.key
+      --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+      --snapshot-count=10000
+      --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+    State:          Running
+      Started:      Wed, 30 Nov 2022 19:15:41 +0000
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        100m
+      memory:     100Mi
+    Liveness:     http-get http://127.0.0.1:2381/health delay=10s timeout=15s period=10s #success=1 #failure=8
+    Startup:      http-get http://127.0.0.1:2381/health delay=10s timeout=15s period=10s #success=1 #failure=24
+    Environment:  <none>
+    Mounts:
+      /etc/kubernetes/pki/etcd from etcd-certs (rw)
+      /var/lib/etcd from etcd-data (rw)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  etcd-certs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/pki/etcd
+    HostPathType:  DirectoryOrCreate
+  etcd-data:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/etcd
+    HostPathType:  DirectoryOrCreate
+QoS Class:         Burstable
+Node-Selectors:    <none>
+Tolerations:       :NoExecute op=Exists
+Events:            <none>
+
+
+
+```
+In the above output we need to make a note of the following - 
+
+```
+--cert-file=/etc/kubernetes/pki/etcd/server.crt, --key-file=/etc/kubernetes/pki/etcd/server.key , --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt , 
+--listen-client-urls=https://127.0.0.1:2379
+
+```
+
+We will pass the above while running the ```etcdctl``` command  for taking a snapshot:
 
