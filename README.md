@@ -894,10 +894,12 @@ To make use of etcdctl for tasks such as back up and restore, make sure that you
 
 
 
-You can do this by exporting the variable ```ETCDCTL_API``` prior to using the etcdctl client. This can be done as follows on the master Node:
+You can do this by exporting the variable ```ETCDCTL_API```  
 
-```export ETCDCTL_API=3```
+```shell
+export ETCDCTL_API=3
 
+```
 
 To see all the options for a specific sub-command, make use of the -h or --help flag.
 
@@ -905,23 +907,45 @@ To see all the options for a specific sub-command, make use of the -h or --help 
 
 For example, if you want to take a snapshot of etcd, use:
 
-```etcdctl snapshot save -h``` and keep a note of the mandatory global options.
+```shell 
+etcdctl snapshot save -h
+``` 
+And keep a note of the mandatory global options.
 
 
 
 Since our ETCD database is TLS-Enabled, the following options are mandatory:
 
-```--cacert```: verify certificates of TLS-enabled secure servers using this CA bundle
+1) Verify certificates of TLS-enabled secure servers using this CA bundle
 
-```--cert```: identify secure client using this TLS certificate file                                                   
+```shell
+--cacert
+``` 
 
-```--endpoints=[127.0.0.1:2379]```: This is the default as ETCD is running on master node and exposed on localhost 2379.
-         
-```--key```: identify secure client using this TLS key file                                                    
+2)Identify secure client using this TLS certificate file      
 
+```shell 
+--cert
 
-Similarly use the help option for snapshot restore to see all available options for restoring the backup.
+```                                             
 
-```etcdctl snapshot restore -h```
+3) This is the default as ETCD is running on master node and exposed on localhost 2379.
+     
+```shell 
+--endpoints=[127.0.0.1:2379]
+```
+
+4) Identify secure client using this TLS key file 
+
+```shell 
+--key
+
+```                                                   
+
+5) Similarly use the help option for snapshot restore to see all available options for restoring the backup.
+
+```shell 
+etcdctl snapshot restore -h
+```
 
 
