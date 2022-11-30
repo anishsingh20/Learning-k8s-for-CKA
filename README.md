@@ -1050,3 +1050,24 @@ In the above output we need to make a note of the following -
 
 We will pass the above while running the ```etcdctl``` command  for taking a snapshot:
 
+2) Now we will take the snapshot using the below command:
+
+```shell
+etcdctl snapshot save /opt/snapshot-pre-boot.db \
+> --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+> --endpoints=https://127.0.0.1:2379 \
+> --cert=/etc/kubernetes/pki/etcd/server.crt \
+> --key=/etc/kubernetes/pki/etcd/server.key 
+Snapshot saved at /opt/snapshot-pre-boot.db
+
+```
+
+In the above the backup of the etcd cluster is stored in location ```/opt/snapshot-pre-boot.db ```. Use command ```etcdctl snapshot -h``` for more details on using the command. 
+
+Get the status of the snapshot by using the command:
+
+```shell
+> etcdctl snapshot status /opt/snapshot-pre-boot.db
+1f793c66, 2392, 828, 2.0 MB
+
+```
