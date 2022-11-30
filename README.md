@@ -1078,9 +1078,8 @@ Get the status of the snapshot by using the command:
 
 ### Restoring ```etcd``` cluster
 
-1) Stop ```kube-apiserver``` service on the master node:
 
-2) Restore the snapshot and add a new data directory location to store the new k8s cluster state:
+1) Restore the snapshot and add a new data directory location to store the old healthy k8s cluster state:
 
 ```shell
 etcdctl snapshot restore /opt/snapshot-pre-boot.db --data-dir=/var/lib/etcd-from-backup 
@@ -1090,3 +1089,8 @@ etcdctl snapshot restore /opt/snapshot-pre-boot.db --data-dir=/var/lib/etcd-from
 
 ```
 
+2) Now simply update the ```etcd.yaml``` manifest under ```/etc/kubernetes/manifests``` because that's where static pod's configuration/spec is stored in ```kubeadm``` cluster deployements. 
+
+And update the ```etcd``` pod's spec to point to a new data directory ```/var/lib/etcd-from-backup ```.
+
+Now wait for a few minutes for the ```etcd``` pod to be created. And the k8s cluster state is preserved.
