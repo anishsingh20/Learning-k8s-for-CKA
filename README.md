@@ -1082,7 +1082,7 @@ Get the status of the snapshot by using the command:
 1) Restore the snapshot and add a new data directory location to store the old healthy k8s cluster state:
 
 ```shell
-etcdctl snapshot restore /opt/snapshot-pre-boot.db --data-dir=/var/lib/etcd-from-backup 
+etcdctl snapshot restore /opt/snapshot-pre-boot.db --data-dir /var/lib/etcd-from-backup 
 
 2022-11-30 20:13:34.201609 I | mvcc: restore compact to 1939
 2022-11-30 20:13:34.210061 I | etcdserver/membership: added member 8e9e05c52164694d [http://localhost:2380] to cluster cdf818194e3a8c32
