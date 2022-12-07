@@ -1094,3 +1094,6 @@ etcdctl snapshot restore /opt/snapshot-pre-boot.db --data-dir /var/lib/etcd-from
 And update the ```etcd``` pod's spec to point to a new data directory ```/var/lib/etcd-from-backup ```.
 
 Now wait for a few minutes for the ```etcd``` pod to be created. And the k8s cluster state is preserved.
+
+
+### TLS Certificates in K8s
