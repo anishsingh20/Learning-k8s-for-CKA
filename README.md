@@ -1125,3 +1125,19 @@ spec:
 EOF
 
 ```
+
+Now we can approve or deny the request for the users using the below commands:
+
+```yaml
+
+kubectl certificate approve <csr_object_name>
+
+```
+
+Deny the request:
+
+```yaml
+
+kubectl certificate deny <csr_object_name>
+
+```
