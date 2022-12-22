@@ -1097,3 +1097,31 @@ Now wait for a few minutes for the ```etcd``` pod to be created. And the k8s clu
 
 
 ### TLS Certificates in K8s
+
+#### Creating a Certificate Signing Request 
+
+
+
+```yaml
+
+openssl genrsa -out akshay.key 2048
+openssl req -new -key akshay.key -out akshay.csr
+
+# converted the key to base64 and add it to requests section of the below spec
+
+
+cat <<EOF | kubectl apply -f -
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: akshay
+spec:
+  groups:
+  - system:authenticated
+  request: $(cat akshay.csr | base64 -w 0)
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
+EOF
+
+```
